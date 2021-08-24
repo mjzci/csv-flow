@@ -17,9 +17,15 @@ class RecreationalVehicleController extends Controller
     public function import(Request $request)
     {
         // validate request 
-        $request->validate([
-            'csv' => 'required|mimes:csv,txt',
-        ]);
+        $rules = [
+            'csv' => 'required|mimes:csv,txt'
+        ];
+    
+        $customMessages = [
+            'required' => 'You must select and upload a CSV file.'
+        ];
+    
+        $this->validate($request, $rules, $customMessages);
 
         //manage file upload
         $csv = new CsvHelper($request);

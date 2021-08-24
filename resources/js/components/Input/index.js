@@ -12,6 +12,7 @@ const Input = (props, ref) => {
     showClear,
     error,
     uncontrolled,
+    accept,
     ...inputProps
   } = props
   const isPassword = type === 'password'
@@ -32,6 +33,7 @@ const Input = (props, ref) => {
         onChange={uncontrolled ? undefined : e => onChange(e)}
         placeholder={placeholder}
         type={!isPassword ? type : showPassword ? 'text' : 'password'}
+        accept={accept}
         {...inputProps}
       />
       {

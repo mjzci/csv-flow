@@ -22,9 +22,15 @@ const CsvImport = (props) => {
     const formData = new FormData();
     formData.append('csv', file);
 
-    const importData = async () =>  {
+    const importData = async data =>  {
       const response = await importCsv(formData)
-      setCamperData(response);
+
+      if (response.errors) {
+        setFormErrors(response.errors);
+      } else {
+        setCamperData(response);
+        setFormErrors('');
+      }
 
     };
     importData();
@@ -43,7 +49,6 @@ const CsvImport = (props) => {
         <CsvImportForm
           additionalErrors={formErrors}
           passFile={passFile}
-          // onInput={(e) => setUploadFile(e.target.files)}}
           onSubmit={onSubmit}
           config={formConfig}
         />

@@ -22,7 +22,6 @@ const ImportCsvForm = (props) => {
   }, [defaultValues, reset])
 
   const submitForm = (e) => {
-    // console.log(file);
     e.preventDefault()
     document.activeElement.blur()
     handleSubmit(onSubmit(file))
@@ -37,6 +36,7 @@ const ImportCsvForm = (props) => {
         label={label}
         disabled={disabled}
         error={errors[key]?.message || additionalErrors[key]}
+        accept={".xlsx, .xls, .csv"}
         uncontrolled
         type={type}
         onInput={(e) => setUploadFile(e.target.files[0])}
